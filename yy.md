@@ -8,9 +8,9 @@
 
 1. **编码规则定义节点列表**
 
-   **uri**：/iuap-saas-billcode-service/billcodeobj/queryBillObj
+   - **uri**：/iuap-saas-billcode-service/billcodeobj/queryBillObj
 
-   **mvc**：PubBcrObjController.queryBillObj()、PubBcrObj、PAP_BCR_OBJ
+   - **mvc**：PubBcrObjController.queryBillObj()、PubBcrObj、PAP_BCR_OBJ
 
    ```sql
    SELECT * FROM PAP_BCR_OBJ;
@@ -18,11 +18,11 @@
 
 2. **节点的编码规则列表**
 
-   **uri**：/iuap-saas-billcode-service/billcode/queryCodeRuleByBillObj
+   - **uri**：/iuap-saas-billcode-service/billcode/queryCodeRuleByBillObj
 
-   **params**：querydata: {"pageIndex":1,"applyid":"TERMINAL_STORE","pageSize":12}
+   - **params**：querydata: {"pageIndex":1,"applyid":"TERMINAL_STORE","pageSize":12}
 
-   **mvc**：BillCodeController.queryCodeRuleByBillObj()、PubBcrRulebase、PAP_BCR_RULEBASE、PAP_BCR_OBJ
+   - **mvc**：BillCodeController.queryCodeRuleByBillObj()、PubBcrRulebase、PAP_BCR_RULEBASE、PAP_BCR_OBJ
 
    ```sql
    SELECT
@@ -63,17 +63,17 @@
 
 3. **编码规则详情**
 
-   **uri**：/iuap-saas-billcode-service/pub_bcr_cp/getByPkBillObj?pkBillObj=TERMINAL_STORE
+   - **uri**：/iuap-saas-billcode-service/pub_bcr_cp/getByPkBillObj?pkBillObj=TERMINAL_STORE
 
-   **mvc**：PubBcrCandidatePropController.getByPkBillObj()、PubBcrCandidateProp、PAP_BCR_CANDIDATEPROP
+   - **mvc**：PubBcrCandidatePropController.getByPkBillObj()、PubBcrCandidateProp、PAP_BCR_CANDIDATEPROP
 
    ```sql
    select * from PAP_BCR_CANDIDATEPROP where pk_bcr_obj = 'TERMINAL_STORE';
    ```
 
-   **uri**：/iuap-saas-billcode-service/billcode/queryCodeRuleByPk/064abfdbb8dd4b00a189d9ad5083c58c
+   - **uri**：/iuap-saas-billcode-service/billcode/queryCodeRuleByPk/064abfdbb8dd4b00a189d9ad5083c58c
 
-   **mvc**：BillCodeController.queryCodeRuleByPk()、PubBcrElem、PAP_BCR_ELEM
+   - **mvc**：BillCodeController.queryCodeRuleByPk()、PubBcrElem、PAP_BCR_ELEM
 
    ```sql
    SELECT
