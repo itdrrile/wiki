@@ -1,10 +1,11 @@
-## Welcome to GitHub Pages
+## Welcome to Itdrrile's Wiki
 
-You can use the [editor on GitHub](https://github.com/itdrrile/wiki/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+> This is itdrrile's wiki.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+# 目录
 
-### Markdown
+- **[yy](yy.md)**
+
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
