@@ -1,7 +1,7 @@
-## Welcome to Itdrrile's Wiki
+# Welcome to Itdrrile's Wiki
 
 > This is itdrrile's wiki.
 
-# 目录
+## 目录
 
-- **[yy](yy.md)**
+- [yy](yy.md)
