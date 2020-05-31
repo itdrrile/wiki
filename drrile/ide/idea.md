@@ -12,7 +12,7 @@
 
 4、激活过程如以下图片
 
-<img src="E:\wiki\drrile\ide\imgs\idea-0531-001.png" alt="001" style="zoom: 67%;" />
+<img src="imgs\idea-0531-001.png" alt="001" style="zoom: 67%;" />
 
 <img src="imgs\idea-0531-002.png" alt="002" style="zoom:67%;" />
 
