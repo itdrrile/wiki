@@ -6,3 +6,5 @@
 
 - [yy](yy.md)
 - [设计模式](设计模式.md)
+- [jdk](jdk.md)
+- [ide](ide/README.md)

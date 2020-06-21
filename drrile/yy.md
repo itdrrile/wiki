@@ -225,3 +225,99 @@
 
 
 
+# 常见问题汇总
+
+> 记录经常碰到的问题
+
+
+
+## 用户、角色、数据权限
+
+- 【绿厨项目】 角色对应的客户数据权限出现了两种： 客户及下级客户、区域及下级区域
+
+  > 问题原因：角色权限分配表common_role_type存在脏数据，存在ieop_role中没有的role_id
+  >
+  > 解决： 脚本删除脏数据
+  >
+  > update common_role_type set dr = 1 where ROLE_ID not in (select id from IEOP_ROLE);
+  
+- 添加角色数据权限需要提供的脚本（以代客下单为例）
+
+  - /fmcg-occ-base-ext/base/role-types/detail?roleId=5acaec82b01741fca044c81df8f1eed7
+
+    - 查询自定义档案中配置的启用的数据权限实体
+
+    ```sql
+    select * from BASE_CUST_DOC_DEF where dr = 0 and IS_ENABLE = 1 and CUST_DOC_CODE = 'xlx108';
+    ```
+
+    - 生成代客下单自定义档案中配置的数据权限实体
+
+    ```sql
+    INSERT INTO BASE_CUST_DOC_DEF ("ID", "CODE", "NAME", "DESCRIPTION", "DR", "TS", "CREATOR", "CREATION_TIME", "MODIFIER", "MODIFIED_TIME", "STATUS", "CUST_DOC_ID", "CUST_DOC_CODE", "REMARK", "EXT01", "EXT02", "EXT03", "EXT04", "EXT05", "EXT06", "EXT07", "EXT08", "EXT09", "EXT10", "IS_ENABLE") VALUES ('0Ibbx6xrfQHCr5eU9jlS', 'order', '代客下单', NULL, '0', SYSDATE, '301', SYSDATE, NULL, NULL, NULL, 'f5d6caf6-b99e-4066-8207-9b5d2d8f1ea8', 'xlx108', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1');
+    ```
+
+  - /fmcg-occ-base-ext/base/role-types/bus_datatypes
+
+    - 查询数据权限表（比如客户）
+
+      ```sql
+      select * from COMMON_DATARIGHT_FILED where ENTITY = 'customer' order by RIGHT_TYPE;
+      ```
+
+    - 生成代客下单数据权限
+
+      ```sql
+      INSERT INTO COMMON_DATARIGHT_FILED ("ID", "ENTITY", "RIGHT_TYPE", "RIGHT_FILED") VALUES ('order_person', 'order', '1', 'salesman');
+      INSERT INTO COMMON_DATARIGHT_FILED ("ID", "ENTITY", "RIGHT_TYPE", "RIGHT_FILED") VALUES ('order_customer', 'order', '2', 'customer.id');
+      INSERT INTO COMMON_DATARIGHT_FILED ("ID", "ENTITY", "RIGHT_TYPE", "RIGHT_FILED") VALUES ('order_customers', 'order', '3', 'customer.id');
+      INSERT INTO COMMON_DATARIGHT_FILED ("ID", "ENTITY", "RIGHT_TYPE", "RIGHT_FILED") VALUES ('order_marketareas', 'order', '4', 'customer.customerAreas.cityMarketArea.id');
+      INSERT INTO COMMON_DATARIGHT_FILED ("ID", "ENTITY", "RIGHT_TYPE", "RIGHT_FILED") VALUES ('order_departments', 'order', '5', 'saleDept.id');
+      INSERT INTO COMMON_DATARIGHT_FILED ("ID", "ENTITY", "RIGHT_TYPE", "RIGHT_FILED") VALUES ('order_organization', 'order', '6', 'saleOrg.id');
+      INSERT INTO COMMON_DATARIGHT_FILED ("ID", "ENTITY", "RIGHT_TYPE", "RIGHT_FILED") VALUES ('order_organizations', 'order', '7', 'saleOrg.id');
+      INSERT INTO COMMON_DATARIGHT_FILED ("ID", "ENTITY", "RIGHT_TYPE", "RIGHT_FILED") VALUES ('order_marketarea', 'order', '8', 'customer.customerAreas.cityMarketArea.id');
+      INSERT INTO COMMON_DATARIGHT_FILED ("ID", "ENTITY", "RIGHT_TYPE", "RIGHT_FILED") VALUES ('order_department', 'order', '9', 'saleDept.id');
+      INSERT INTO COMMON_DATARIGHT_FILED ("ID", "ENTITY", "RIGHT_TYPE", "RIGHT_FILED") VALUES ('order_persons', 'order', '10', 'salesman');
+      INSERT INTO COMMON_DATARIGHT_FILED ("ID", "ENTITY", "RIGHT_TYPE", "RIGHT_FILED") VALUES ('order_allpersons', 'order', '11', 'salesman');
+      ```
+
+      
+
+
+
+## 标准查询参数
+
+- **分组取"或"，内连接（默认）**
+
+  search_EQ_1~personPosts.organization.id
+
+  search_EQ_1~personMarkets.saleOrg.id
+
+- **分组取"或"，左连接（使用L）**
+
+  search_EQ_1~L~personPosts.organization.id
+
+  search_EQ_1~L~personMarkets.saleOrg.id
+
+- **分组取"或"，右连接（使用非L）**
+
+  search_EQ_1~R~personPosts.organization.id
+
+  search_EQ_1~R~personMarkets.saleOrg.id
+
+
+
+## 中间件docker
+
+- 查看docker列表
+  - docker ps
+  - docker ps -a
+- 启动docker
+  - docker start 容器id
+  - docker restart 容器id
+- 删除docker
+  - docker rm 容器id
+- 查看日志
+  - docker logs -f zookeeper-occ  
+- 运行docker
+  -   docker run -d --name zookeeper-occ -p 2181:2181 -v  /home/work/zookeeper/data:/data zookeeper:latest  
