@@ -321,3 +321,16 @@
   - docker logs -f zookeeper-occ  
 - 运行docker
   -   docker run -d --name zookeeper-occ -p 2181:2181 -v  /home/work/zookeeper/data:/data zookeeper:latest  
+
+
+
+
+
+
+
+
+
+---
+
+
+
