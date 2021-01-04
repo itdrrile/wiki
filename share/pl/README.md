@@ -6,8 +6,8 @@ README
 
 ### 目录
 
-- [c](/tmp/.mount_JoplinMwDPSC/resources/app.asar/c.md "c.md")
-- [c++](/tmp/.mount_JoplinMwDPSC/resources/app.asar/c++.md "c++.md")
-- [java](/tmp/.mount_JoplinMwDPSC/resources/app.asar/java.md "java.md")
-- [python](/tmp/.mount_JoplinMwDPSC/resources/app.asar/python.md "python.md")
-- [shell](/tmp/.mount_JoplinMwDPSC/resources/app.asar/shell.md "shell.md")
+- [c](c.md)
+- [c++](c++.md)
+- [java](java.md)
+- [python](python.md)
+- [shell](shell.md)
